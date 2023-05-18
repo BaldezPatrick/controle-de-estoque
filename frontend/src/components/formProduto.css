@@ -40,3 +40,9 @@
 .form-container button[type="submit"]:hover {
     background-color: #0056b3;
 }
+
+@media screen and (max-width:500px) {
+    .form-container form {
+        flex-direction: column;
+    }
+}
