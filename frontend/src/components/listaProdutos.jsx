@@ -1,7 +1,7 @@
-import axios from "axios";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import { toast } from "react-toastify";
 import "./listaProdutos.css";
+import api from "../axios/api";
 
 const ListaProdutos = ({ produtos, setProdutos, setOnEdit }) => {
   const handleedit = (produto) => {
@@ -9,8 +9,8 @@ const ListaProdutos = ({ produtos, setProdutos, setOnEdit }) => {
   };
 
   const handledelete = async (id) => {
-    await axios
-      .delete("http://localhost:5000/" + id)
+    await api
+      .delete("/" + id)
       .then(({ data }) => {
         const novaLista = produtos.filter((produto) => produto.id !== id);
 

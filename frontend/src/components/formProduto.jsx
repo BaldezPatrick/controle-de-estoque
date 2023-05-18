@@ -1,7 +1,7 @@
-import axios from "axios";
 import { useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 import "./formProduto.css";
+import api from "../axios/api";
 
 const FormProduto = ({ onEdit, setOnEdit, getProdutos }) => {
   const refNome = useRef();
@@ -34,8 +34,8 @@ const FormProduto = ({ onEdit, setOnEdit, getProdutos }) => {
     };
 
     if (onEdit) {
-      axios
-        .put("http://localhost:5000/" + onEdit.id, formData)
+      api
+        .put("/" + onEdit.id, formData)
         .then(({ data }) => {
           toast.success(data);
           setOnEdit(null);
@@ -43,8 +43,8 @@ const FormProduto = ({ onEdit, setOnEdit, getProdutos }) => {
         })
         .catch(({ data }) => toast.error(data));
     } else {
-      axios
-        .post("http://localhost:5000/", formData)
+      api
+        .post("/", formData)
         .then(({ data }) => {
           toast.success(data);
           getProdutos();
